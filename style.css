@@ -45,6 +45,23 @@ body {
   font-family: 'Baloo Bhai', cursive;
   text-align: center;
   vertical-align: middle;
+  width: 100%;
+  margin-left: 10px;
+}
+
+#timer > span {
+  display: inline-block;
+  width: 35px;
+}
+
+#sessionTime > span {
+  display: inline-block;
+  width: 20px;
+}
+
+#breakTime > span {
+  display: inline-block;
+  width: 20px;
 }
 
 #infinity {

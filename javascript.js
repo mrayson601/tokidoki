@@ -11,7 +11,10 @@ function converter(seconds) {
   mins = Math.floor(seconds / 60);
   sec = seconds - mins * 60;
   if (sec < 10) {
-    return mins + ":0" + sec;
+    sec="0"+sec;
+  }
+  if (mins < 10){
+    mins="0"+mins;
   }
   return mins + ":" + sec;
 }
@@ -26,8 +29,9 @@ function countDown() {
   if (breakOn == true) {
     $("#timeType").text("Relax");
   }
+  timeString=converter(time);
 
-  $("#timer").text(converter(time));
+  $("#timer").html('<span>'+timeString[0]+'</span>'+'<span>'+timeString[1]+'</span>'+'<span>'+timeString[2]+'</span>'+'<span>'+timeString[3]+'</span>'+'<span>'+timeString[4]+'</span>');
 
   if (time < 1 && breakOn == true) {
     clearInterval(startTimer);
@@ -65,9 +69,10 @@ $("#reset").click(function() {
   timerOn = false;
   breakOn = false;
   time = omniTime;
+  timeString=converter(time);
   $("#timeType").text("Ready?");
   clearInterval(startTimer);
-  $("#timer").text(converter(time));
+  $("#timer").html('<span>'+timeString[0]+'</span>'+'<span>'+timeString[1]+'</span>'+'<span>'+timeString[2]+'</span>'+'<span>'+timeString[3]+'</span>'+'<span>'+timeString[4]+'</span>');
 });
 
 $(document).ready(function() {
@@ -77,15 +82,21 @@ $(document).ready(function() {
     $("#timeType").text("Relax");
   }
 
+  $("#timer").html('<span>2</span><span>5</span><span>:</span><span>0</span><span>0</span>');
+
+
 });
 
-$("#sessionTime").text(converter(omniTime));
+timeString=converter(omniTime);
+$("#sessionTime").html('<span>'+timeString[0]+'</span>'+'<span>'+timeString[1]+'</span>'+'<span>'+timeString[2]+'</span>'+'<span>'+timeString[3]+'</span>'+'<span>'+timeString[4]+'</span>');
 
 $("#sessionUp").click(function() {
   if (timerOn == false) {
     omniTime += 60;
     time = omniTime;
-    $("#sessionTime").text(converter(omniTime));
+    timeString=converter(time);
+    $("#sessionTime").html('<span>'+timeString[0]+'</span>'+'<span>'+timeString[1]+'</span>'+'<span>'+timeString[2]+'</span>'+'<span>'+timeString[3]+'</span>'+'<span>'+timeString[4]+'</span>');
+
   }
 });
 
@@ -94,17 +105,21 @@ $("#sessionDown").click(function() {
     if (omniTime > 60) {
       omniTime -= 60;
       time = omniTime;
-      $("#sessionTime").text(converter(omniTime));
+      timeString=converter(time);
+      $("#sessionTime").html('<span>'+timeString[0]+'</span>'+'<span>'+timeString[1]+'</span>'+'<span>'+timeString[2]+'</span>'+'<span>'+timeString[3]+'</span>'+'<span>'+timeString[4]+'</span>');
     }
   }
 });
 
-$("#breakTime").text(converter(breakTime));
+timeString=converter(breakTime);
+$("#breakTime").html('<span>'+timeString[0]+'</span>'+'<span>'+timeString[1]+'</span>'+'<span>'+timeString[2]+'</span>'+'<span>'+timeString[3]+'</span>'+'<span>'+timeString[4]+'</span>');
 
 $("#breakUp").click(function() {
   if (timerOn == false) {
     breakTime += 60;
-    $("#breakTime").text(converter(breakTime));
+    timeString=converter(breakTime);
+    $("#breakTime").html('<span>'+timeString[0]+'</span>'+'<span>'+timeString[1]+'</span>'+'<span>'+timeString[2]+'</span>'+'<span>'+timeString[3]+'</span>'+'<span>'+timeString[4]+'</span>');
+
   }
 });
 
@@ -112,7 +127,9 @@ $("#breakDown").click(function() {
   if (timerOn == false) {
     if (breakTime > 60) {
       breakTime -= 60;
-      $("#breakTime").text(converter(breakTime));
+      timeString=converter(breakTime);
+      $("#breakTime").html('<span>'+timeString[0]+'</span>'+'<span>'+timeString[1]+'</span>'+'<span>'+timeString[2]+'</span>'+'<span>'+timeString[3]+'</span>'+'<span>'+timeString[4]+'</span>');
+
     }
   }
 });
